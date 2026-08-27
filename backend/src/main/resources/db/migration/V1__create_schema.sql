@@ -81,3 +81,17 @@ CREATE TABLE IF NOT EXISTS experience_technologies (
     technology VARCHAR(80) NOT NULL,
     PRIMARY KEY (experience_id, technology) -- Evita tecnologias duplicadas
 );
+
+CREATE TABLE IF NOT EXISTS educations (
+    id BIGSERIAL PRIMARY KEY,
+    institution VARCHAR(150) NOT NULL,
+    degree VARCHAR(100) NOT NULL,
+    field_of_study VARCHAR(150),
+    description TEXT, logo_url VARCHAR(500),
+    grade VARCHAR(30),
+    started_at DATE NOT NULL,
+    ended_at DATE, current
+    BOOLEAN DEFAULT FALSE,
+    sort_order INT DEFAULT 0,
+    active BOOLEAN DEFAULT TRUE
+);
