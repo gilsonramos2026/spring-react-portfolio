@@ -108,3 +108,16 @@ CREATE TABLE IF NOT EXISTS certifications (
     sort_order INT DEFAULT 0,
     active BOOLEAN DEFAULT TRUE
 );
+
+CREATE TABLE IF NOT EXISTS testimonials (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    role VARCHAR(150) NOT NULL,
+    company VARCHAR(150),
+    content TEXT NOT NULL,
+    avatar_url VARCHAR(500),
+    rating INT DEFAULT 5,
+    featured BOOLEAN DEFAULT FALSE,
+    sort_order INT DEFAULT 0,
+    active BOOLEAN DEFAULT TRUE
+);
