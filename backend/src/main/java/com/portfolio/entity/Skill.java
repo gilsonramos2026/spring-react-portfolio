@@ -23,7 +23,7 @@ public class Skill {
     private String category;
 
     @Column(nullable=false)
-    private String proficiency;
+    private Integer proficiency;
 
     @Column(name="icon_name",length=80)
     private String iconName;

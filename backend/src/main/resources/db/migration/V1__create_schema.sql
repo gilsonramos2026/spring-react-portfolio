@@ -50,3 +50,13 @@ CREATE TABLE IF NOT EXISTS project_images (
     sort_order INT DEFAULT 0,
     created_at TIMESTAMP NOT NULL            -- Mantido TIMESTAMP pois o Java de ProjectImage usa LocalDateTime
 );
+
+CREATE TABLE IF NOT EXISTS skills (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(80) NOT NULL,
+    category VARCHAR(60) NOT NULL,
+    proficiency INT NOT NULL,
+    icon_name VARCHAR(80),
+    sort_order INT DEFAULT 0,
+    active BOOLEAN DEFAULT TRUE
+);
