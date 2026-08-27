@@ -121,3 +121,15 @@ CREATE TABLE IF NOT EXISTS testimonials (
     sort_order INT DEFAULT 0,
     active BOOLEAN DEFAULT TRUE
 );
+
+CREATE TABLE IF NOT EXISTS contacts (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    subject VARCHAR(200),
+    message TEXT NOT NULL,
+    phone VARCHAR(30),
+    status VARCHAR(20) DEFAULT 'new',
+    ip_address VARCHAR(45),
+    created_at TIMESTAMP DEFAULT NOW()
+);
