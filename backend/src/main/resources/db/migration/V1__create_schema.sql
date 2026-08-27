@@ -95,3 +95,16 @@ CREATE TABLE IF NOT EXISTS educations (
     sort_order INT DEFAULT 0,
     active BOOLEAN DEFAULT TRUE
 );
+
+CREATE TABLE IF NOT EXISTS certifications (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    issuer VARCHAR(150) NOT NULL,
+    credential_id VARCHAR(200),
+    credential_url VARCHAR(500),
+    image_url VARCHAR(500),
+    issued_at DATE NOT NULL,
+    expires_at DATE,
+    sort_order INT DEFAULT 0,
+    active BOOLEAN DEFAULT TRUE
+);
