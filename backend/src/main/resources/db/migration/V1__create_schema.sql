@@ -60,3 +60,24 @@ CREATE TABLE IF NOT EXISTS skills (
     sort_order INT DEFAULT 0,
     active BOOLEAN DEFAULT TRUE
 );
+
+CREATE TABLE IF NOT EXISTS experiences (
+    id BIGSERIAL PRIMARY KEY,
+    company VARCHAR(150) NOT NULL,
+    role VARCHAR(150) NOT NULL,
+    description TEXT,
+    logo_url VARCHAR(500),
+    location VARCHAR(100),
+    type VARCHAR(30) DEFAULT 'full_time',
+    started_at DATE NOT NULL,
+    ended_at DATE,
+    current BOOLEAN DEFAULT FALSE,
+    sort_order INT DEFAULT 0,
+    active BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS experience_technologies (
+    experience_id BIGINT REFERENCES experiences(id) ON DELETE CASCADE,
+    technology VARCHAR(80) NOT NULL,
+    PRIMARY KEY (experience_id, technology) -- Evita tecnologias duplicadas
+);
