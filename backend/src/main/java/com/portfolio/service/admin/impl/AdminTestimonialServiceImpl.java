@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -23,28 +22,34 @@ public class AdminTestimonialServiceImpl implements AdminTestimonialService {
     private final TestimonialMapper mapper;
 
     @Override
-    @Transactional(readOnly=true)
-    public List<TestimonialResponse> getAllTestimonials(){
+    @Transactional(readOnly = true)
+    public List<TestimonialResponse> getAllTestimonials() {
         return testRepo.findAll().stream().map(mapper::toResponse).toList();
     }
 
     @Override
-    public TestimonialResponse createTestimonial(TestimonialRequest r){
-        Testimonial t=new Testimonial();
-        mapper.applyRequest(t,r);
+    public TestimonialResponse createTestimonial(TestimonialRequest r) {
+        Testimonial t = new Testimonial();
+        mapper.applyRequest(t, r);
+        t.setActive(true); // Garante que o registro inicia ativo por padrão
         return mapper.toResponse(testRepo.save(t));
     }
 
     @Override
-    public TestimonialResponse updateTestimonial(Long id, TestimonialRequest r){
-        Testimonial t=testRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Testemunho",id));
-        mapper.applyRequest(t,r);
+    public TestimonialResponse updateTestimonial(Long id, TestimonialRequest r) {
+        // CORRIGIDO: Mensagem concatenada para casar com a assinatura da exceção de um parâmetro
+        Testimonial t = testRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Depoimento com ID " + id + " não encontrado"));
+        mapper.applyRequest(t, r);
         return mapper.toResponse(testRepo.save(t));
     }
 
     @Override
-    public void deleteTestimonial(Long id){
-        testRepo.deleteById(id);
+    public void deleteTestimonial(Long id) {
+        // CORRIGIDO: Aplicando Soft Delete através da flag active para manter a integridade dos dados
+        Testimonial t = testRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Depoimento com ID " + id + " não encontrado"));
+        t.setActive(false);
+        testRepo.save(t);
     }
-
 }
