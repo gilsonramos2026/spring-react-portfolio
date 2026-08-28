@@ -1,7 +1,6 @@
 package com.portfolio.controller.publicapi;
 
 import com.portfolio.dto.response.SkillResponse;
-import com.portfolio.service.PortfolioPublicService;
 import com.portfolio.service.publicapi.PublicSkillService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
