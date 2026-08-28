@@ -22,26 +22,34 @@ public class AdminSkillServiceImpl implements AdminSkillService {
     private final SkillMapper mapper;
 
     @Override
-    @Transactional(readOnly=true)
-    public List<SkillResponse> getAllSkills(){
+    @Transactional(readOnly = true)
+    public List<SkillResponse> getAllSkills() {
         return skillRepo.findAll().stream().map(mapper::toResponse).toList();
     }
 
     @Override
-    public SkillResponse createSkill(SkillRequest r){
-        Skill s=new Skill(); mapper.applyRequest(s,r);
+    public SkillResponse createSkill(SkillRequest r) {
+        Skill s = new Skill();
+        mapper.applyRequest(s, r);
+        s.setActive(true); // Garante que inicia ativa por padrão
         return mapper.toResponse(skillRepo.save(s));
     }
 
     @Override
-    public SkillResponse updateSkill(Long id, SkillRequest r){
-        Skill s=skillRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Skill",id));
-        mapper.applyRequest(s,r);
+    public SkillResponse updateSkill(Long id, SkillRequest r) {
+        // CORRIGIDO: Mensagem de texto única para a exceção customizada
+        Skill s = skillRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Habilidade técnica com ID " + id + " não encontrada"));
+        mapper.applyRequest(s, r);
         return mapper.toResponse(skillRepo.save(s));
     }
 
-    @Override public void deleteSkill(Long id){
-        skillRepo.deleteById(id);
-    }
+    @Override
+    public void deleteSkill(Long id) {
 
+        Skill s = skillRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Habilidade técnica com ID " + id + " não encontrada"));
+        s.setActive(false);
+        skillRepo.save(s);
+    }
 }
