@@ -2,6 +2,7 @@ package com.portfolio.controller.publicapi;
 
 import com.portfolio.dto.response.SkillResponse;
 import com.portfolio.service.publicapi.PublicSkillService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class PublicSkillController {
     private final PublicSkillService svc;
 
     @GetMapping
+    @Operation(summary = "Listar competências técnicas agrupadas")
     public ResponseEntity<Map<String, List<SkillResponse>>> skills() {
         return ResponseEntity.ok(svc.getSkillsGrouped());
     }
