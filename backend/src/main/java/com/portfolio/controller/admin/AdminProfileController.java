@@ -2,6 +2,7 @@ package com.portfolio.controller.admin;
 
 import com.portfolio.dto.request.ProfileRequest;
 import com.portfolio.dto.response.ProfileResponse;
+import com.portfolio.service.admin.AdminProfileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Tag(name = "Admin - Perfil", description = "Gerenciamento do perfil profissional do proprietário")
 public class AdminProfileController {
 
-    private final PortfolioAdminService svc;
+    private final AdminProfileService svc;
 
     @PutMapping
     @Operation(summary = "Criar ou atualizar os dados do perfil profissional")
