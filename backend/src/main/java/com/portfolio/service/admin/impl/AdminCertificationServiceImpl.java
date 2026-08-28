@@ -31,7 +31,7 @@ public class AdminCertificationServiceImpl implements AdminCertificationService 
     public CertificationResponse createCertification(CertificationRequest r) {
         Certification c = new Certification();
         mapper.applyRequest(c, r);
-        c.setActive(true); // Garante o registro ativo por padrão
+        c.setActive(true);
         return mapper.toResponse(certRepo.save(c));
     }
 
