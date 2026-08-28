@@ -2,7 +2,8 @@ package com.portfolio.dto.response;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
