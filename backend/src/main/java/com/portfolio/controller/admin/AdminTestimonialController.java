@@ -2,8 +2,6 @@ package com.portfolio.controller.admin;
 
 import com.portfolio.dto.request.TestimonialRequest;
 import com.portfolio.dto.response.TestimonialResponse;
-import com.portfolio.service.AdminTestimonialService;
-import com.portfolio.service.PortfolioAdminService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

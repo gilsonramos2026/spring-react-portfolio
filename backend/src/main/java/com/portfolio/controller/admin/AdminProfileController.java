@@ -2,7 +2,6 @@ package com.portfolio.controller.admin;
 
 import com.portfolio.dto.request.ProfileRequest;
 import com.portfolio.dto.response.ProfileResponse;
-import com.portfolio.service.PortfolioAdminService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
