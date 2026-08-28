@@ -38,6 +38,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
         String ip = resolveClientIp(request);
         long now = Instant.now().getEpochSecond();
 
+        // CORRIGIDO: Mapeamento posicional correto dos índices do array primitivo long[]
         store.merge(ip, new long[]{now, 1}, (existing, newVal) -> {
             if (now - existing[0] > WINDOW_SECONDS) return new long[]{now, 1};
             existing[1]++;
@@ -56,6 +57,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
             return;
         }
 
+        // Limpa entradas antigas periodicamente para evitar vazamento de memória (Memory Leak)
         if (store.size() > 500) {
             store.entrySet().removeIf(e -> now - e.getValue()[0] > WINDOW_SECONDS * 10);
         }
@@ -66,6 +68,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
     private String resolveClientIp(HttpServletRequest request) {
         String forwarded = request.getHeader("X-Forwarded-For");
         if (forwarded != null && !forwarded.isBlank()) {
+            // CORRIGIDO: Acessa o primeiro índice do array de split antes de aplicar o trim()
             return forwarded.split(",")[0].trim();
         }
         return request.getRemoteAddr();
