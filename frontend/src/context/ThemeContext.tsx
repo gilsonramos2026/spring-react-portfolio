@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 type Theme = 'dark' | 'light'
 interface Ctx { theme: Theme; toggle: () => void }
 const ThemeCtx = createContext<Ctx | null>(null)
