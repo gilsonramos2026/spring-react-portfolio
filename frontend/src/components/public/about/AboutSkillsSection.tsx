@@ -7,11 +7,17 @@ interface AboutSkillsSectionProps {
 }
 
 export function AboutSkillsSection({ skillsMap }: AboutSkillsSectionProps) {
-  if (!skillsMap || Object.keys(skillsMap).length === 0) return null
+  if (!skillsMap || Object.keys(skillsMap).length === 0) {
+    return null
+  }
 
   return (
     <section className="mb-16 border-t border-(--bd) pt-12">
-      <FadeIn><h2 className="text-2xl font-bold text-(--t1) mb-8 flex items-center gap-2"><span className="text-gradient">Skills</span></h2></FadeIn>
+      <FadeIn>
+        <h2 className="text-2xl font-bold text-(--t1) mb-8 flex items-center gap-2">
+          <span className="text-gradient">Skills</span>
+        </h2>
+      </FadeIn>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {Object.entries(skillsMap).map(([cat, skills], ci) => (
           <FadeIn key={cat} delay={ci * 80}>

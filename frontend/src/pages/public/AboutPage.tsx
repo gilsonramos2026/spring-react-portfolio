@@ -7,12 +7,12 @@ import FadeIn from '../../components/ui/FadeIn'
 import { usePageMeta } from '../../hooks/usePageMeta'
 
 import { AboutProfileSection } from '../../components/public/about/AboutProfileSection'
-// import { AboutSkillsSection } from '../../components/public/about/AboutSkillsSection'
-// import { AboutExperienceSection } from '../../components/public/about/AboutExperienceSection'
-// import { AboutEducationSection } from '../../components/public/about/AboutEducationSection'
-// import { AboutCertificationsSection } from '../../components/public/about/AboutCertificationsSection'
+import { AboutSkillsSection } from '../../components/public/about/AboutSkillsSection'
+import { AboutExperienceSection } from '../../components/public/about/AboutExperienceSection'
+import { AboutCertificationsSection } from '../../components/public/about/AboutCertificationsSection'
+import { AboutEducationSection } from '../../components/public/about/AboutEducationSection'
 
-export default function AboutPage() {
+export  function AboutPage() {
   const { data: profile, isLoading: loadingProfile } = useProfile()
   usePageMeta({
     title: 'Sobre mim',
@@ -31,12 +31,13 @@ export default function AboutPage() {
         <h1 className="text-3xl sm:text-4xl font-bold text-(--t1) mb-3">Sobre mim</h1>
         <p className="text-(--t3) max-w-xl">Conheça minha trajetória, habilidades e formação.</p>
       </FadeIn>
+      
 
       <AboutProfileSection profile={profile} isLoading={loadingProfile} />
-      {/* <AboutSkillsSection skillsMap={skillsMap} />
+      <AboutSkillsSection skillsMap={skillsMap} />
       <AboutExperienceSection experiences={experiences} />
       <AboutEducationSection educations={educations} />
-      <AboutCertificationsSection certifications={certifications} /> */}
+      <AboutCertificationsSection certifications={certifications} /> 
     </div>
   )
 }

@@ -1,6 +1,6 @@
 export * from './profile';
 export * from './project';
-export * from './skill';
+export * from './skills';
 export * from './experience';
 export * from './education';
 export * from './certification';

@@ -1,7 +1,7 @@
 import { resolveAssetUrl } from '../../../utils/api'
 import FadeIn from '../../ui/FadeIn'
 import { MapPin, Mail } from 'lucide-react'
-import type { Profile } from '../../../types' // Ajuste o caminho se necessário
+import type { Profile } from '../../../types' 
 import { SkeletonProfile } from '../../ui/SkeletonBox'
 
 interface AboutProfileSectionProps {
@@ -20,7 +20,8 @@ export function AboutProfileSection({ profile, isLoading }: AboutProfileSectionP
               <img src={resolveAssetUrl(profile.avatarUrl)} alt={profile.name}
                 className="w-32 h-32 rounded-2xl object-cover border-2 border-(--bd)"/>
             ) : (
-              <div className="w-32 h-32 rounded-2xl bg-linear-to-br from-brand-500 to-accent-500 flex items-center justify-center text-white text-4xl font-bold">
+              <div className="w-32 h-32 rounded-2xl bg-linear-to-br from
+              3-brand-500 to-accent-500 flex items-center justify-center text-white text-4xl font-bold">
                 {profile.name[0]}
               </div>
             )}
