@@ -1,4 +1,6 @@
+import { ContactFormSection } from "../../components/public/contact/ContactFormSection"
 import { ContactHeaderSection } from "../../components/public/contact/ContactHeaderSection"
+import { ContactInfoSidebar } from "../../components/public/contact/ContactInfoSidebar"
 import { usePageMeta } from "../../hooks/usePageMeta"
 
 export function ContactPage() {
