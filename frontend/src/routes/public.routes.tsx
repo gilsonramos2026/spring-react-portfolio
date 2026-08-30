@@ -5,6 +5,7 @@ import ContactPage from "../pages/public/ContactPage";
 import HomePage from "../pages/public/HomePage";
 import NotFound from "../pages/public/NotFound";
 import ProjectDetail from "../pages/public/ProjectDetail";
+import ProjectsPage from "../pages/public/ProjectsPage";
 
 
 export const publicRoutes = {
