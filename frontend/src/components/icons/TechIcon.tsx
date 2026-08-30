@@ -81,10 +81,12 @@ const ALIASES: Record<string, string> = {
 function resolveIcon(name: string): SiIcon | null {
   const key = name.toLowerCase().trim()
 
+ const iconsDict = (si as unknown) as Record<string, SiIcon>
+
   // 1. Direct alias lookup
   const aliasKey = ALIASES[key]
   if (aliasKey) {
-    const icon = (si as Record<string, SiIcon>)[aliasKey]
+    const icon = iconsDict[aliasKey]
     if (icon) return icon
   }
 
@@ -95,17 +97,18 @@ function resolveIcon(name: string): SiIcon | null {
     .replace(/[.\-_]/g, '')
     .replace(/^./, c => c.toUpperCase())
 
-  const autoIcon = (si as Record<string, SiIcon>)[autoSlug]
+  const autoIcon = iconsDict[autoSlug]
   if (autoIcon) return autoIcon
 
   // 3. Try removing special chars: "Node.js" → "siNodejs"
   const cleanSlug = 'si' + name.replace(/[^a-zA-Z0-9]/g, '')
     .replace(/^./, c => c.toUpperCase())
-  const cleanIcon = (si as Record<string, SiIcon>)[cleanSlug]
+  const cleanIcon = iconsDict[cleanSlug]
   if (cleanIcon) return cleanIcon
 
   return null
 }
+
 
 // ── Renderers ──────────────────────────────────────────────────
 function SiSvg({ icon, size }: { icon: SiIcon; size: number }) {
@@ -130,7 +133,7 @@ function Fallback({ name, size }: { name: string; size: number }) {
     .slice(0, 2).map(w => w[0].toUpperCase()).join('')
   return (
     <span
-      className="inline-flex items-center justify-center w-full h-full rounded-md bg-[var(--chb)] text-[var(--t3)] font-bold"
+      className="inline-flex items-center justify-center w-full h-full rounded-md bg-(--chb) text-(--t3) font-bold"
       style={{ fontSize: Math.max(Math.floor(size * 0.38), 9) }}
     >
       {initials || name.slice(0, 2).toUpperCase()}
@@ -166,7 +169,7 @@ export default function TechIcon({ name, size = 32, showLabel = false, className
     <span className={clsx('inline-flex flex-col items-center gap-1', className)} title={name}>
       <IconBox name={name} size={size} />
       {showLabel && (
-        <span className="text-xs text-[var(--t4)] font-medium leading-none text-center">{name}</span>
+        <span className="text-xs text-(--t4) font-medium leading-none text-center">{name}</span>
       )}
     </span>
   )

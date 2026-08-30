@@ -3,7 +3,6 @@ package com.portfolio.service.admin.impl;
 import com.portfolio.dto.request.SkillRequest;
 import com.portfolio.dto.response.SkillResponse;
 import com.portfolio.entity.Skill;
-import com.portfolio.exception.ResourceNotFoundException;
 import com.portfolio.mapper.SkillMapper;
 import com.portfolio.repository.SkillRepository;
 import org.junit.jupiter.api.DisplayName;
