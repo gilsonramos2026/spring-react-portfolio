@@ -1,7 +1,9 @@
 import { usePageMeta } from "../../hooks/usePageMeta";
 import { useProfile } from "../../hooks/useProfile";
 
-import HeroSection from "../../components/public/home/HeroSection";
+import { HeroSection } from "../../components/public/home/HeroSection";
+import { StatsSection } from "../../components/public/home/StatsSection";
+import { TechStackSection } from "../../components/public/home/TechStackSection";
 
 
 export  function HomePage() {
@@ -16,6 +18,8 @@ export  function HomePage() {
   return (
     <div className="max-w-7xl max-auto px-4 sm:px-6">
       <HeroSection />
+      <StatsSection />
+      <TechStackSection />
     </div>
   )
 }

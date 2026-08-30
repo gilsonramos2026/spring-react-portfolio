@@ -14,7 +14,7 @@ const fadeRight = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
-export default function HeroSection() {
+export  function HeroSection() {
   const { data: profile } = useProfile()
 
   return (
@@ -44,7 +44,7 @@ export default function HeroSection() {
                   sequence={[
                     'Desenvolvedor Full Stack', 2500,
                     'Engenheiro de Software', 2500,
-                    'Arquiteto de Soluções', 2500,
+                    'Desenvolvedor de sistemas', 2500,
                   ]}
                   wrapper="span"
                   speed={55}

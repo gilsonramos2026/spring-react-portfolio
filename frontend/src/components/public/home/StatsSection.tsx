@@ -5,7 +5,7 @@ import FadeIn from '../../ui/FadeIn'
 
 const STACK_LENGTH = 10
 
-export default function StatsSection() {
+export  function StatsSection() {
   const { data: profile } = useProfile()
   const { data: projects } = usePublicProjects(true)
 
