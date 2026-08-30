@@ -6,7 +6,7 @@ export interface ProjectImage {
 }
 
 export interface Project {
-  id: number;
+   id: number;
   title: string;
   slug: string;
   shortDesc: string;
@@ -19,7 +19,7 @@ export interface Project {
   sortOrder?: number;
   tags?: string[];
   images?: ProjectImage[];
-  startedAt?: Date;
-  finishedAt?: Date;
-  createdAt: Date;
+  startedAt?: string;
+  finishedAt?: string;
+  createdAt?: string;
 }

@@ -24,8 +24,8 @@ export default function NotFound() {
         </motion.p>
 
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-[var(--t1)]">Página não encontrada</h1>
-          <p className="text-[var(--t3)]">
+          <h1 className="text-2xl font-bold text-(--t1)">Página não encontrada</h1>
+          <p className="text-(--t3)">
             O endereço que você acessou não existe ou foi movido.
           </p>
         </div>
