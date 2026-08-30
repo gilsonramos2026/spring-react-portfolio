@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import { Maximize2, Images } from 'lucide-react'
-import type { ProjectImage } from '../../../types'
 import FadeIn from '../../ui/FadeIn'
 import { resolveAssetUrl } from '../../../utils/api'
+import { Maximize2, Images } from 'lucide-react'
+import type { ProjectImage } from '../../../types'
 
 interface ProjectGallerySectionProps {
   images: ProjectImage[]
@@ -15,6 +15,7 @@ export function ProjectGallerySection({ images, projectTitle, onOpenLightbox }: 
 
   return (
     <FadeIn>
+      {/* Hero image */}
       <motion.div
         className="relative rounded-2xl overflow-hidden aspect-video bg-(--s2) cursor-pointer group"
         onClick={() => onOpenLightbox(0)}
@@ -44,6 +45,7 @@ export function ProjectGallerySection({ images, projectTitle, onOpenLightbox }: 
         )}
       </motion.div>
 
+      {/* Thumbnail grid */}
       {images.length > 1 && (
         <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 mt-3">
           {images.slice(1).map((img, i) => (

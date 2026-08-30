@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion'
+import FadeIn from '../../ui/FadeIn'
 import { ExternalLink, Github, Calendar, Images } from 'lucide-react'
 import type { Project } from '../../../types'
-import FadeIn from '../../ui/FadeIn'
-
 
 interface ProjectSidebarSectionProps {
   project: Project
@@ -14,7 +13,7 @@ export function ProjectSidebarSection({ project, imagesCount }: ProjectSidebarSe
     <FadeIn delay={200} className="space-y-4">
       {/* Links */}
       <div className="card p-5 space-y-3">
-       <h3 className="font-semibold text-sm uppercase tracking-wide text-(--t4)">Links</h3>
+        <h3 className="font-semibold text-sm uppercase tracking-wide text-(--t4)">Links</h3>
         {project.demoUrl && (
           <motion.a href={project.demoUrl} target="_blank" rel="noreferrer"
             whileHover={{ x: 3 }}
@@ -36,7 +35,7 @@ export function ProjectSidebarSection({ project, imagesCount }: ProjectSidebarSe
 
       {/* Meta */}
       <div className="card p-5 space-y-3">
-        <h3 className="font-semibold  text-sm uppercase tracking-wide text-(--t4)">Detalhes</h3>
+        <h3 className="font-semibold text-sm uppercase tracking-wide text-(--t4)">Detalhes</h3>
 
         {project.status && (
           <div className="flex items-center justify-between text-sm">
@@ -64,7 +63,7 @@ export function ProjectSidebarSection({ project, imagesCount }: ProjectSidebarSe
         {imagesCount > 0 && (
           <div className="flex items-center gap-2 text-sm text-(--t3)">
             <Images size={14} className="text-(--t4)" />
-            <span className="text-brand-400 font-semibold">{imagesCount}</span>
+            <span className="text-(--color-brand-400 font-semibold">{imagesCount}</span>
             {' '}screenshot{imagesCount > 1 ? 's' : ''}
             <span className="text-(--t5) text-xs">(clique para ampliar)</span>
           </div>

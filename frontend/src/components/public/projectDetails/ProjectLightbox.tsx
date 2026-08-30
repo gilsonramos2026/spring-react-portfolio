@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { resolveAssetUrl } from '../../../utils/api'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { ProjectImage } from '../../../types'
-import { resolveAssetUrl } from '../../../utils/api'
 
 interface ProjectLightboxProps {
   images: ProjectImage[]
@@ -28,7 +28,7 @@ export function ProjectLightbox({ images, index, onClose, onPrev, onNext }: Proj
         <div className="flex items-center justify-between px-5 py-3 shrink-0" onClick={e => e.stopPropagation()}>
           <span className="text-white/50 text-sm font-mono">{index + 1} / {images.length}</span>
           <button onClick={onClose}
-            className="tap text-white/50 hover:text-white transition-colors hover:bg-white/10 rounded-xl">
+            className="tap text-white/50 hover:text-white transition-colors hover:bg-white/10 rounded-xl p-1">
             <X size={22} />
           </button>
         </div>
@@ -75,8 +75,7 @@ export function ProjectLightbox({ images, index, onClose, onPrev, onNext }: Proj
                 whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}
                 className={`w-14 h-9 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${
                   i === index ? 'border-brand-400 opacity-100' : 'border-transparent opacity-40 hover:opacity-70'
-                }`}
-                onClick={() => {}}>
+                }`}>
                 <img src={resolveAssetUrl(img.url)} alt="" className="w-full h-full object-cover" />
               </motion.button>
             ))}

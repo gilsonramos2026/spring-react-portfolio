@@ -39,7 +39,7 @@ export default function ProjectDetail() {
 
   if (isLoading) return (
     <div className="flex justify-center items-center min-h-[60dvh]">
-      <Spinner size={36} className="text-brand-400" />
+      <Spinner className="w-9 h-9 text-brand-400" />
     </div>
   )
 
@@ -65,7 +65,7 @@ export default function ProjectDetail() {
             Voltar aos projetos
           </Link>
           <h1 className="text-3xl sm:text-4xl font-bold text-(--t1) mb-3">{project.title}</h1>
-          <p className="text-lg text-(--t3)">{project.shortDesc}</p>
+          <p className="text-lg text-[var(--t3)">{project.shortDesc}</p>
         </FadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
