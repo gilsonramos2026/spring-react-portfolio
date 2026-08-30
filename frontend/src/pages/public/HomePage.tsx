@@ -4,6 +4,7 @@ import { useProfile } from "../../hooks/useProfile";
 import { HeroSection } from "../../components/public/home/HeroSection";
 import { StatsSection } from "../../components/public/home/StatsSection";
 import { TechStackSection } from "../../components/public/home/TechStackSection";
+import { ProjectsSection } from "../../components/public/home/ProjectsSection";
 
 
 export  function HomePage() {
@@ -20,6 +21,7 @@ export  function HomePage() {
       <HeroSection />
       <StatsSection />
       <TechStackSection />
+      <ProjectsSection />
     </div>
   )
 }

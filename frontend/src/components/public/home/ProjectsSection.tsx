@@ -7,7 +7,7 @@ import { resolveAssetUrl } from '../../../utils/api'
 import { TechBadge } from '../../icons/TechIcon'
 
 
-export default function ProjectsSection() {
+export  function ProjectsSection() {
   const { data: projects } = usePublicProjects(true)
 
   if (!projects || projects.length === 0) return null
