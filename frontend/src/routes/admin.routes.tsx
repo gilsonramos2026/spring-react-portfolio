@@ -1,4 +1,13 @@
+import AdminLayout from "../components/layout/AdminLayout"
+import ErrorBoundary from "../components/ui/ErrorBoundary "
+import AdminCertifications from "../pages/admin/AdminCertifications"
+import AdminContacts from "../pages/admin/AdminContacts"
+import AdminEducations from "../pages/admin/AdminEducations"
+import AdminExperiences from "../pages/admin/AdminExperiences"
 import AdminLogin from "../pages/admin/AdminLogin"
+import AdminProfile from "../pages/admin/AdminProfile"
+import AdminSkills from "../pages/admin/AdminSkills"
+import AdminTestimonials from "../pages/admin/AdminTestimonials"
 
 
 export const adminLoginRoute = {
