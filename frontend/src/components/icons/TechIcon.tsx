@@ -18,10 +18,10 @@ const ALIASES: Record<string, string> = {
   // Languages
   'javascript':'siJavascript', 'js':'siJavascript',
   'typescript':'siTypescript', 'ts':'siTypescript',
-  'python':'siPython', 'java':'siJava', 'java 21':'siJava',
+  'python':'siPython', 'java':'siOpenjdk', 'java 21':'siOpenjdk', 'openjdk':'siOpenjdk',
   'go':'siGo', 'golang':'siGo', 'rust':'siRust',
   'kotlin':'siKotlin', 'swift':'siSwift', 'php':'siPhp',
-  'ruby':'siRuby', 'c#':'siCsharp', 'c++':'siCplusplus',
+  'ruby':'siRuby', 'c#':'siCsharp', '.net':'siDotnet', 'c++':'siCplusplus',
   'dart':'siDart', 'scala':'siScala', 'elixir':'siElixir',
 
   // Frontend
@@ -38,7 +38,7 @@ const ALIASES: Record<string, string> = {
 
   // Backend
   'node.js':'siNodedotjs', 'nodejs':'siNodedotjs', 'node':'siNodedotjs',
-  'spring':'siSpring', 'spring boot':'siSpring',
+  'spring':'siSpring', 'spring boot':'siSpringboot',
   'django':'siDjango', 'flask':'siFlask', 'fastapi':'siFastapi',
   'laravel':'siLaravel', 'express':'siExpress', 'nestjs':'siNestjs',
   'graphql':'siGraphql', 'grpc':'siGrpc',
@@ -81,7 +81,7 @@ const ALIASES: Record<string, string> = {
 function resolveIcon(name: string): SiIcon | null {
   const key = name.toLowerCase().trim()
 
- const iconsDict = (si as unknown) as Record<string, SiIcon>
+  const iconsDict = (si as unknown) as Record<string, SiIcon>
 
   // 1. Direct alias lookup
   const aliasKey = ALIASES[key]
