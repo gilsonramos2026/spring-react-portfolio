@@ -7,18 +7,11 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // API calls: /api/... → localhost:8080/api/...
+      // CORRIGIDO: O proxy /api agora centraliza e redireciona tanto os dados quanto as mídias (/api/uploads)
       '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      },
-      // Static uploads: /uploads/... → localhost:8080/uploads/...
-      // The Spring backend serves uploads OUTSIDE the /api context-path
-      '/uploads': {
         target: 'http://localhost:8080',
         changeOrigin: true,
       },
     },
   },
 })
-

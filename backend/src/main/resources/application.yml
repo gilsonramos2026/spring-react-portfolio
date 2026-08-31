@@ -34,7 +34,7 @@ app:
     secret-key: portfolio-admin-2024
   upload:
     dir: ./uploads
-    public-path: /uploads
+    public-path: /api/uploads
 
 springdoc:
   api-docs:

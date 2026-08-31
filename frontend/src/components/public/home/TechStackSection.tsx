@@ -1,7 +1,7 @@
 import { TechGrid } from "../../icons/TechIcon"
 import FadeIn from "../../ui/FadeIn"
 
-const STACK = ['React', 'TypeScript', 'Next.js', 'Java 21', 'Spring Boot', 'PostgreSQL', 'Docker', 'AWS', 'Git', 'Tailwind CSS']
+const STACK = ['React', 'TypeScript', 'Next.js', 'Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'AWS', 'Git', 'Tailwind CSS']
 
 export function TechStackSection() {
   return (

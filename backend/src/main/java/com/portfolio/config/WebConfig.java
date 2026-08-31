@@ -6,6 +6,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
@@ -17,21 +20,31 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry r){
-        r.addMapping("/**").allowedOriginPatterns(origins.split(","))
+        r.addMapping("/**")
+                .allowedOriginPatterns(origins.split(","))
                 .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
-                .allowedHeaders("*").allowCredentials(false).maxAge(3600);
+                .allowedHeaders("*")
+                .allowCredentials(false)
+                .maxAge(3600);
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry r){
-        // 1. Mantém a exposição segura da pasta física de mídias do Windows
-        String loc = uploadDir.endsWith("/") ? uploadDir : uploadDir + "/";
-        r.addResourceHandler("/uploads/**").addResourceLocations("file:" + loc);
+        // Converte o caminho para absoluto e normalizado, evitando falhas do Tomcat/Spring
+        Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
 
-        r.addResourceHandler("/swagger-ui/**")
+        // CORRIGIDO: toUri().toString() garante o formato válido 'file:///' com barras normais (/) no Windows
+        String loc = uploadPath.toUri().toString();
+
+        // CORRIGIDO: Adicionado o prefixo /api para herdar as diretivas de roteamento do context-path
+        r.addResourceHandler("/api/uploads/**")
+                .addResourceLocations(loc)
+                .setCachePeriod(0);
+
+        r.addResourceHandler("/api/swagger-ui/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/swagger-ui/");
 
-        r.addResourceHandler("/swagger-ui.html")
+        r.addResourceHandler("/api/swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
     }
 }

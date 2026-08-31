@@ -1,10 +1,15 @@
+import { Sun, Moon } from 'lucide-react'
+import { useTheme } from '../../context/ThemeContext'
 
-const ThemeToggle = () => {
+export default function ThemeToggle() {
+  const { theme, toggle } = useTheme()
   return (
-    <div>
-      
-    </div>
+    <button type="button" onClick={toggle} className="theme-toggle"
+      aria-label={theme==='dark'?'Tema claro':'Tema escuro'}>
+      <span className="theme-knob">
+        {theme==='dark'?<Moon size={11} className="text-white"/>:<Sun size={11} className="text-white"/>}
+      </span>
+    </button>
   )
 }
 
-export default ThemeToggle
