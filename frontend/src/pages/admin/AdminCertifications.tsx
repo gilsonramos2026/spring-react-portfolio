@@ -9,7 +9,7 @@ import { CertificationFormModal } from '../../components/admin/CertificationForm
 
 type Editing = Certification | 'new' | null
 
-export default function AdminCertifications() {
+export  function AdminCertifications() {
   const { data: items } = useAdminCertifications()
   const create = useCreateCertification()
   const update = useUpdateCertification()
