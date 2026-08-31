@@ -1,7 +1,7 @@
 import AdminLayout from "../components/layout/AdminLayout"
 import ErrorBoundary from "../components/ui/ErrorBoundary "
 import { AdminCertifications } from "../pages/admin/AdminCertifications"
-import AdminContacts from "../pages/admin/AdminContacts"
+import { AdminContacts } from "../pages/admin/AdminContacts"
 import { AdminDashboard } from "../pages/admin/AdminDashboard"
 import AdminEducations from "../pages/admin/AdminEducations"
 import AdminExperiences from "../pages/admin/AdminExperiences"
