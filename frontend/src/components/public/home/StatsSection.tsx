@@ -5,7 +5,7 @@ import FadeIn from '../../ui/FadeIn'
 
 const STACK_LENGTH = 10
 
-export  function StatsSection() {
+export function StatsSection() {
   const { data: profile } = useProfile()
   const { data: projects } = usePublicProjects(true)
 
@@ -25,14 +25,15 @@ export  function StatsSection() {
           {stats.map((s, i) => (
             <motion.div
               key={s.l}
-              className="card p-5 sm:p-6 text-center"
+              className="card p-4 sm:p-6 text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.04 }}
             >
-              <p className="text-2xl sm:text-3xl font-bold text-gradient">{s.v}</p>
+              {/* Diminuído para text-xl no mobile e mantido text-3xl no sm+ */}
+              <p className="text-xl sm:text-3xl font-bold text-gradient">{s.v}</p>
               <p className="text-xs sm:text-sm text-(--t4) mt-1">{s.l}</p>
             </motion.div>
           ))}
