@@ -11,7 +11,7 @@ import { DashboardStatsGrid } from '../../components/admin/dashboard/DashboardSt
 import { DashboardRecentContacts } from '../../components/admin/dashboard/DashboardRecentContacts'
 import { useAdminContacts, useContactCount } from '../../hooks/useContact'
 
-export default function AdminDashboard() {
+export function AdminDashboard() {
   const { data: projects } = useAdminProjects()
   const { data: skills } = useAdminSkills()
   const { data: experiences } = useAdminExperiences()
