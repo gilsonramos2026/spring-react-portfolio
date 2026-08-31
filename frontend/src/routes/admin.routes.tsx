@@ -9,7 +9,7 @@ import { AdminLogin } from "../pages/admin/AdminLogin"
 import { AdminProfile } from "../pages/admin/AdminProfile"
 import { AdminProjects } from "../pages/admin/AdminProjects"
 import { AdminSkills } from "../pages/admin/AdminSkills"
-import AdminTestimonials from "../pages/admin/AdminTestimonials"
+import { AdminTestimonials } from "../pages/admin/AdminTestimonials"
 
 
 export const adminLoginRoute = {
