@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Contact } from '../../types'
 
+import { AdminHeader } from '../../components/admin/AdminHeader'
 import { ContactsFilter } from '../../components/admin/contacts/ContactsFilter'
 import { ContactsTable } from '../../components/admin/contacts/ContactsTable'
 import { ContactDetailModal } from '../../components/admin/contacts/ContactDetailModal'
@@ -19,10 +20,13 @@ export function AdminContacts() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-(--t1)">Contatos</h1>
-        <p className="text-(--t3) text-sm mt-0.5">{contacts?.length ?? 0} mensagens</p>
-      </div>
+      <AdminHeader
+        title="Contatos"
+        count={contacts?.length}
+        countLabel="mensagens"
+        buttonLabel="" // Se não houver botão de ação principal, você pode ajustar ou omitir se preferir
+        onAdd={() => {}}
+      />
 
       <ContactsFilter filter={filter} setFilter={setFilter} />
 
@@ -32,7 +36,6 @@ export function AdminContacts() {
         onUpdateStatus={handleUpdateStatus} 
       />
 
-      {/* CORRIGIDO: Envelopado com condicional para garantir que o modal só renderize com um Contact válido, eliminando o conflito com 'null' */}
       {selected && (
         <ContactDetailModal 
           selected={selected} 

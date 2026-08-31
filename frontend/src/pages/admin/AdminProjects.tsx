@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useAdminProjects, useCreateProject, useUpdateProject, useDeleteProject } from '../../hooks/useProjects'
 import { useForm } from 'react-hook-form'
 import type { Project } from '../../types'
-import { Plus } from 'lucide-react'
 
+import { AdminHeader } from '../../components/admin/AdminHeader'
 import { ProjectsTable } from '../../components/admin/projects/ProjectsTable'
 import { ProjectFormModal, type ProjectFormData } from '../../components/admin/projects/ProjectFormModal'
 
@@ -48,15 +48,13 @@ export function AdminProjects() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-(--t1)">Projetos</h1>
-          <p className="text-(--t3) text-sm mt-0.5">{projects?.length ?? 0} projetos</p>
-        </div>
-        <button onClick={() => open('new')} className="btn-primary text-sm">
-          <Plus size={15}/>Novo projeto
-        </button>
-      </div>
+      <AdminHeader
+        title="Projetos"
+        count={projects?.length}
+        countLabel="projetos"
+        buttonLabel="Novo projeto"
+        onAdd={() => open('new')}
+      />
 
       <ProjectsTable
         projects={projects}

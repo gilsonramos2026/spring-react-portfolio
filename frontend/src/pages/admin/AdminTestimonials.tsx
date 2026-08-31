@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useAdminTestimonials, useCreateTestimonial, useUpdateTestimonial, useDeleteTestimonial } from '../../hooks/useTestimonials'
 import { useForm } from 'react-hook-form'
 import type { Testimonial } from '../../types'
-import { Plus } from 'lucide-react'
 
+import { AdminHeader } from '../../components/admin/AdminHeader'
 import { TestimonialsTable } from '../../components/admin/testimonials/TestimonialsTable'
 import { TestimonialFormModal } from '../../components/admin/testimonials/TestimonialFormModal'
 
@@ -38,15 +38,13 @@ export function AdminTestimonials() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-(--t1)">Testemunhos</h1>
-          <p className="text-(--t3) text-sm">{items?.length ?? 0} registros</p>
-        </div>
-        <button onClick={() => open('new')} className="btn-primary text-sm">
-          <Plus size={15}/>Novo
-        </button>
-      </div>
+      <AdminHeader
+        title="Testemunhos"
+        count={items?.length}
+        countLabel="registros"
+        buttonLabel="Novo"
+        onAdd={() => open('new')}
+      />
 
       <TestimonialsTable
         items={items}

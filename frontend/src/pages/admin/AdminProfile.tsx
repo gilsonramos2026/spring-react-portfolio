@@ -4,6 +4,7 @@ import { useProfile, useUpdateProfile, useUploadAvatar } from '../../hooks/usePr
 import type { Profile } from '../../types'
 import Spinner from '../../components/ui/Spinner'
 
+import { AdminHeader } from '../../components/admin/AdminHeader'
 import { ProfileAvatarSection } from '../../components/admin/profile/ProfileAvatarSection'
 import { ProfileForm } from '../../components/admin/profile/ProfileForm'
 
@@ -38,12 +39,16 @@ export function AdminProfile() {
 
   return (
     <div className="max-w-2xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-(--t1)">Perfil</h1>
-        <p className="text-(--t3) text-sm mt-0.5">
-          Informações exibidas no site público
-        </p>
-      </div>
+      <AdminHeader
+        title="Perfil"
+        count={undefined}
+        countLabel=""
+        buttonLabel=""
+        onAdd={() => {}}
+      />
+      <p className="text-(--t3) text-sm -mt-4">
+        Informações exibidas no site público
+      </p>
 
       <ProfileAvatarSection
         profile={profile}

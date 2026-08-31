@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useAdminEducations, useCreateEducation, useUpdateEducation, useDeleteEducation } from '../../hooks/useEducations'
 import { useForm } from 'react-hook-form'
 import type { Education } from '../../types'
-import { Plus } from 'lucide-react'
 
+import { AdminHeader } from '../../components/admin/AdminHeader'
 import { EducationsTable } from '../../components/admin/educations/EducationsTable'
 import { EducationFormModal } from '../../components/admin/educations/EducationFormModal'
 
@@ -23,15 +23,13 @@ export function AdminEducations() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-(--t1)">Educação</h1>
-          <p className="text-(--t3) text-sm">{items?.length ?? 0} registros</p>
-        </div>
-        <button onClick={() => open('new')} className="btn-primary text-sm">
-          <Plus size={15}/>Nova formação
-        </button>
-      </div>
+      <AdminHeader
+        title="Educação"
+        count={items?.length}
+        countLabel="registros"
+        buttonLabel="Nova formação"
+        onAdd={() => open('new')}
+      />
 
       <EducationsTable 
         items={items} 
@@ -48,7 +46,7 @@ export function AdminEducations() {
             if (editing === 'new') {
               create.mutate(d, { onSuccess: close })
             } else {
-              update.mutate({ id: (editing as Education).id, data: d }, { onSuccess: close })
+              update.mutate({ id: editing.id, data: d }, { onSuccess: close })
             }
           }}
         />

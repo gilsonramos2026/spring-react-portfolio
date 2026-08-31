@@ -4,8 +4,8 @@ interface AdminHeaderProps {
   title: string
   count: number | undefined
   countLabel: string
-  buttonLabel: string
-  onAdd: () => void
+  buttonLabel?: string // <-- Torne opcional com o '?'
+  onAdd?: () => void  // <-- Torne opcional também
 }
 
 export function AdminHeader({ title, count, countLabel, buttonLabel, onAdd }: AdminHeaderProps) {
@@ -17,10 +17,14 @@ export function AdminHeader({ title, count, countLabel, buttonLabel, onAdd }: Ad
           {count ?? 0} {countLabel}
         </p>
       </div>
-      <button onClick={onAdd} className="btn-primary text-sm">
-        <Plus size={15} />
-        {buttonLabel}
-      </button>
+
+      {/* Só renderiza o botão se o buttonLabel for fornecido */}
+      {buttonLabel && (
+        <button onClick={onAdd} className="btn-primary text-sm flex items-center gap-2">
+          <Plus size={15} className="pointer-events-none" />
+          {buttonLabel}
+        </button>
+      )}
     </div>
   )
 }
