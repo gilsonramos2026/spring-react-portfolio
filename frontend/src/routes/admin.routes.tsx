@@ -14,15 +14,13 @@ import { AdminTestimonials } from "../pages/admin/AdminTestimonials"
 export const adminLoginRoute = {
   path: '/admin/login',
   element: <AdminLogin />,
-  // CORRIGIDO: Fornecido um elemento filho vazio para cumprir a obrigatoriedade da propriedade children
-  errorElement: <ErrorBoundary><></></ErrorBoundary>,
+  errorElement: <ErrorBoundary>{null}</ErrorBoundary>,
 }
 
 export const adminRoutes = {
   path: '/admin',
   element: <AdminLayout />,
-  // CORRIGIDO: Fornecido um elemento filho vazio para cumprir a obrigatoriedade da propriedade children
-  errorElement: <ErrorBoundary><></></ErrorBoundary>,
+  errorElement: <ErrorBoundary>{null}</ErrorBoundary>,
   children: [
     { index: true, element: <AdminDashboard /> },
     { path: 'profile', element: <AdminProfile /> },

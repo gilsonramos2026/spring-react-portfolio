@@ -11,7 +11,7 @@ import ProjectsPage from "../pages/public/ProjectsPage";
 export const publicRoutes = {
   element: <PublicLayout />,
  
-  errorElement: <ErrorBoundary><></></ErrorBoundary>,
+  errorElement: <ErrorBoundary>{null}</ErrorBoundary>,
   children: [
     { path: '/', element: <HomePage /> },
     { path: '/projects', element: <ProjectsPage /> },
