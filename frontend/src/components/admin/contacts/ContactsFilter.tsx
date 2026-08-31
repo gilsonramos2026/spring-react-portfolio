@@ -15,7 +15,7 @@ export function ContactsFilter({ filter, setFilter }: ContactsFilterProps) {
     <div className="flex gap-2 flex-wrap">
       {[{v:undefined,l:'Todas'},...STATUS_OPTS].map(o=>(
         <button key={o.l} onClick={()=>setFilter(o.v)}
-          className={`tag cursor-pointer transition-all text-xs ${filter===o.v?'bg-[var(--color-brand-500)] text-white border-[var(--color-brand-500)]':''}`}>
+          className={`tag cursor-pointer transition-all text-xs ${filter===o.v?'bg-brand-500 text-white border-brand-500':''}`}>
           {o.l}
         </button>
       ))}
