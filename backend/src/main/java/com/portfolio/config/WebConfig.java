@@ -12,16 +12,21 @@ import java.nio.file.Paths;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    // ALINHADO: Lê exatamente a mesma propriedade estruturada no seu application.yml
+    @Value("${spring.web.cors.allowed-origins:http://localhost:3000}")
+    private String origins;
+
     @Value("${app.upload.dir:./uploads}")
     private String uploadDir;
 
     @Override
     public void addCorsMappings(CorsRegistry r){
-        // LIBERAÇÃO TOTAL DE CORS: Permite que a Vercel e o ambiente local consumam a API sem bloqueios
+        // Configura dinamicamente as origens permitidas baseadas no YML/Variáveis de Ambiente
         r.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOriginPatterns(origins.split(","))
                 .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                 .allowedHeaders("*")
+                .allowCredentials(true) // Permite envio de cookies/headers autenticados se necessário
                 .maxAge(3600);
     }
 
