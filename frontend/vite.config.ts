@@ -9,7 +9,8 @@ export default defineConfig({
     proxy: {
       // CORRIGIDO: O proxy /api agora centraliza e redireciona tanto os dados quanto as mídias (/api/uploads)
       '/api': {
-        target: 'http://localhost:8080',
+        // target: 'http://localhost:8080',
+        target: 'https://spring-react-portfolio-production.up.railway.app',
         changeOrigin: true,
       },
     },

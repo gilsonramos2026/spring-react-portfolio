@@ -4,8 +4,7 @@ import { Pencil, Trash2, Github, ExternalLink } from 'lucide-react'
 interface ProjectsTableProps {
   projects: Project[] | undefined
   onOpen: (project: Project) => void
-  onDelete: (id: number
-  ) => void
+  onDelete: (id: number) => void
 }
 
 export function ProjectsTable({ projects, onOpen, onDelete }: ProjectsTableProps) {
@@ -42,7 +41,8 @@ export function ProjectsTable({ projects, onOpen, onDelete }: ProjectsTableProps
                 </td>
                 <td>
                   <div className="flex flex-wrap gap-1">
-                    {p.tags?.slice(0, 3).map(t => <span key={t} className="tag text-xs">{t}</span>)}
+                    {/* CORRIGIDO AQUI: garante um array vazio caso p.tags venha nulo/undefined */}
+                    {(p.tags || []).slice(0, 3).map(t => <span key={t} className="tag text-xs">{t}</span>)}
                   </div>
                 </td>
                 <td>
