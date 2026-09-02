@@ -23,6 +23,9 @@ spring:
       enabled: true
       max-file-size: 5MB
       max-request-size: 10MB
+  web:
+    cors:
+      allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
 
 server:
   port: 8080
