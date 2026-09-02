@@ -22,7 +22,7 @@ export function ProjectsTable({ projects, onOpen, onDelete }: ProjectsTableProps
             </tr>
           </thead>
           <tbody>
-            {projects?.map(p => (
+            {(projects || []).map(p => (
               <tr key={p.id}>
                 <td>
                   <div className="font-medium text-(--t1)">{p.title}</div>
@@ -41,8 +41,15 @@ export function ProjectsTable({ projects, onOpen, onDelete }: ProjectsTableProps
                 </td>
                 <td>
                   <div className="flex flex-wrap gap-1">
-                    {/* CORRIGIDO AQUI: garante um array vazio caso p.tags venha nulo/undefined */}
-                    {(p.tags || []).slice(0, 3).map(t => <span key={t} className="tag text-xs">{t}</span>)}
+                    {/* BLINDADO: Trata se p.tags vier como string, array ou nulo/undefined */}
+                    {(typeof p.tags === 'string' 
+                      ? (p.tags as unknown as string).split(',') 
+                      : (p.tags || [])
+                    ).slice(0, 3).map((t: any) => (
+                      <span key={typeof t === 'string' ? t.trim() : t} className="tag text-xs">
+                        {typeof t === 'string' ? t.trim() : t}
+                      </span>
+                    ))}
                   </div>
                 </td>
                 <td>
