@@ -12,31 +12,24 @@ import java.nio.file.Paths;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Value("${spring.web.cors.allowed-origins:http://localhost:3000}")
-    private String origins;
-
     @Value("${app.upload.dir:./uploads}")
     private String uploadDir;
 
     @Override
     public void addCorsMappings(CorsRegistry r){
+        // LIBERAÇÃO TOTAL DE CORS: Permite que a Vercel e o ambiente local consumam a API sem bloqueios
         r.addMapping("/**")
-                .allowedOriginPatterns(origins.split(","))
+                .allowedOrigins("*")
                 .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(false)
                 .maxAge(3600);
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry r){
-        // Converte o caminho para absoluto e normalizado, evitando falhas do Tomcat/Spring
         Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
-
-        // CORRIGIDO: toUri().toString() garante o formato válido 'file:///' com barras normais (/) no Windows
         String loc = uploadPath.toUri().toString();
 
-        // CORRIGIDO: Adicionado o prefixo /api para herdar as diretivas de roteamento do context-path
         r.addResourceHandler("/api/uploads/**")
                 .addResourceLocations(loc)
                 .setCachePeriod(0);
