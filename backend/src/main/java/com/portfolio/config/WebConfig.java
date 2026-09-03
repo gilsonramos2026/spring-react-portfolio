@@ -19,21 +19,21 @@ public class WebConfig implements WebMvcConfigurer {
     private String uploadDir;
 
     @Override
-    public void addCorsMappings(CorsRegistry r){
+    public void addCorsMappings(CorsRegistry r) {
         r.addMapping("/**")
                 .allowedOriginPatterns(origins.split(","))
-                .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3600);
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry r){
+    public void addResourceHandlers(ResourceHandlerRegistry r) {
         Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
-        String loc = uploadPath.toUri().toString();
+        String loc = "file:" + uploadPath.toString() + "/";
 
-        // CORRIGIDO: Removido o /api duplicado para alinhar com o context-path global do servidor
+        // Mapeia o acesso público às imagens respeitando o context-path (/api)
         r.addResourceHandler("/uploads/**")
                 .addResourceLocations(loc)
                 .setCachePeriod(0);

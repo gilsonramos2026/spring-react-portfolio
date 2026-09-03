@@ -20,7 +20,8 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Value("${app.upload.dir:./uploads}")
     private String dir;
 
-    @Value("${app.upload.public-path:/uploads}")
+    // Garanta que no seu yml isso aponte para /api/uploads para alinhar com o context-path
+    @Value("${app.upload.public-path:/api/uploads}")
     private String pub;
 
     @Override
@@ -32,7 +33,8 @@ public class FileStorageServiceImpl implements FileStorageService {
             throw new FileStorageException("Arquivo excede 5MB.");
         }
 
-        String ext = ext(file.getOriginalFilename() != null ? file.getOriginalFilename() : "file");
+        String originalName = file.getOriginalFilename() != null ? file.getOriginalFilename() : "file";
+        String ext = ext(originalName);
         if (!ALLOWED.contains(ext.toLowerCase())) {
             throw new FileStorageException("Tipo não permitido: " + ext);
         }
@@ -40,16 +42,25 @@ public class FileStorageServiceImpl implements FileStorageService {
         String name = UUID.randomUUID() + "." + ext.toLowerCase();
 
         try {
-            Path d = Paths.get(dir, sub).normalize().toAbsolutePath();
-            Files.createDirectories(d);
-            Files.copy(file.getInputStream(), d.resolve(name), StandardCopyOption.REPLACE_EXISTING);
+            // CORRIGIDO: Garante que o diretório base exista antes de concatenar a subpasta com segurança
+            Path baseDir = Paths.get(dir).toAbsolutePath().normalize();
 
-            // CORRIGIDO: Normaliza as barras para evitar barras duplas (//) geradas pelo subpath
-            String rawUrl = pub + "/" + sub + "/" + name;
+            // Remove barras iniciais ou finais do 'sub' para não quebrar a montagem do Path
+            String cleanSub = sub.replaceAll("^/+", "").replaceAll("/+$", "");
+            Path targetDir = baseDir.resolve(cleanSub).normalize();
+
+            // Cria todas as pastas físicas necessárias de forma recursiva
+            Files.createDirectories(targetDir);
+
+            // Copia o arquivo para a pasta final
+            Files.copy(file.getInputStream(), targetDir.resolve(name), StandardCopyOption.REPLACE_EXISTING);
+
+            // CORRIGIDO: Normaliza as barras garantindo que comece com o prefixo correto da API
+            String rawUrl = pub + "/" + cleanSub + "/" + name;
             return rawUrl.replaceAll("/+", "/");
 
         } catch (IOException e) {
-            throw new FileStorageException("Erro ao salvar: " + e.getMessage(), e);
+            throw new FileStorageException("Erro ao salvar arquivo no disco: " + e.getMessage(), e);
         }
     }
 
@@ -59,9 +70,11 @@ public class FileStorageServiceImpl implements FileStorageService {
             return;
         }
         try {
-            // Remove o prefixo público e localiza o caminho real do arquivo no disco rígido
-            String relativePath = url.substring(pub.length());
-            Path filePath = Paths.get(dir, relativePath).normalize().toAbsolutePath();
+            // Remove o prefixo público de forma segura
+            String relativePath = url.substring(pub.length()).replaceAll("^/+", "");
+            Path baseDir = Paths.get(dir).toAbsolutePath().normalize();
+            Path filePath = baseDir.resolve(relativePath).normalize();
+
             Files.deleteIfExists(filePath);
         } catch (IOException ignored) {}
     }
