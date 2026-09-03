@@ -14,7 +14,7 @@ const fadeRight = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
-export function HeroSection() {
+export  function HeroSection() {
   const { data: profile } = useProfile()
 
   return (
@@ -39,8 +39,7 @@ export function HeroSection() {
               <span className="text-(--t1)">Olá, sou </span>
               <span className="text-gradient">{profile?.name?.split(' ')[0] ?? 'Dev'}</span>
               <br />
-              {/* CORRIGIDO: text-xl para mobile impede a quebra de linha. sm:text-4xl restaura o tamanho original em telas maiores */}
-              <span className="text-(--t2) text-2xl sm:text-4xl xl:text-5xl block min-h-[1.2em]">
+              <span className="text-(--t2) text-2xl sm:text-4xl xl:text-5xl">
                 <TypeAnimation
                   sequence={[
                     'Desenvolvedor Full Stack', 2500,
