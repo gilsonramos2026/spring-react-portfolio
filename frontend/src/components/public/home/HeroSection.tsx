@@ -40,7 +40,7 @@ export function HeroSection() {
               <span className="text-gradient">{profile?.name?.split(' ')[0] ?? 'Dev'}</span>
               <br />
               {/* CORRIGIDO: text-xl para mobile impede a quebra de linha. sm:text-4xl restaura o tamanho original em telas maiores */}
-              <span className="text-(--t2) text-lg sm:text-4xl xl:text-5xl block min-h-[1.2em]">
+              <span className="text-(--t2) text-2xl sm:text-4xl xl:text-5xl block min-h-[1.2em]">
                 <TypeAnimation
                   sequence={[
                     'Desenvolvedor Full Stack', 2500,
