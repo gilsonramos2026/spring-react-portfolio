@@ -39,7 +39,7 @@ export  function HeroSection() {
               <span className="text-(--t1)">Olá, sou </span>
               <span className="text-gradient">{profile?.name?.split(' ')[0] ?? 'Dev'}</span>
               <br />
-              <span className="text-(--t2) text-3xl sm:text-4xl xl:text-5xl">
+              <span className="text-(--t2) text-xl sm:text-4xl xl:text-5xl">
                 <TypeAnimation
                   sequence={[
                     'Desenvolvedor Full Stack', 2500,
