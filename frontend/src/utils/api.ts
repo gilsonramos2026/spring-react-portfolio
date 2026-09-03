@@ -3,15 +3,13 @@ import axios from "axios";
 /**
  * Base URL for all API calls.
  * - Dev:  '/api'  (Vite proxy forwards to localhost:8080)
- * - Prod: 'https://onrender.com'
+ * - Prod: 'https://spring-react-portfolio-production.up.railway.app/api' (ou sua URL da Railway)
  */
 const BASE = import.meta.env.VITE_API_URL || "/api";
 
 /**
  * Separate base for static assets (uploads) served by the backend
  * OUTSIDE the /api context-path.
- * - Dev:  ''  (Vite proxy /api/uploads → localhost:8080/api/uploads)
- * - Prod: 'https://onrender.com'  (strip /api suffix)
  */
 const ASSET_BASE = BASE.replace(/\/api\/?$/, "");
 
@@ -31,10 +29,10 @@ export function resolveAssetUrl(path?: string | null): string {
   if (!path) return "";
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   
-let normalized = path.startsWith("/") ? path : `/${path}`;
-  if (normalized.startsWith("/uploads") && !normalized.startsWith("/api/uploads")) {
-    normalized = `/api${normalized}`;
-  }
+  let normalized = path.startsWith("/") ? path : `/${path}`;
+  
+  // CORRIGIDO: Mantém exatamente o caminho de assets limpo (ex: /uploads/foto.png),
+  // sem injetar o /api indesejado, alinhando com o WebConfig do Spring Boot.
   
   return `${ASSET_BASE}${normalized}`;
 }
